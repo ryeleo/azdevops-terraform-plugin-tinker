@@ -19,7 +19,7 @@ jobs:
           inputs:
             provider: 'azurerm'
             command: 'init'
-            workingDirectory: '$(Pipeline.Workspace)/terraform'
+            workingDirectory: '.'
             backendServiceArm: 'd88e0c85-dev-subscription'
             backendAzureRmResourceGroupName: 'terraform-rg'
             backendAzureRmStorageAccountName: 'terraform03'
@@ -30,7 +30,7 @@ jobs:
           inputs:
             provider: 'azurerm'
             command: 'plan'
-            workingDirectory: '$(Pipeline.Workspace)/terraform'
+            workingDirectory: '.'
             backendServiceArm: 'd88e0c85-dev-subscription'
             backendAzureRmResourceGroupName: 'terraform-rg'
             backendAzureRmStorageAccountName: 'terraform03'
