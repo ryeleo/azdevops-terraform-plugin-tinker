@@ -4,6 +4,7 @@ pool:
 trigger: none
 jobs:
 - deployment: Provision
+  environment: dev
   strategy:
     runOnce:
       deploy:
