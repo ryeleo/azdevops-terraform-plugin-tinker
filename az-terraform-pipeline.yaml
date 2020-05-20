@@ -2,37 +2,32 @@
 pool:
   vmImage: 'Ubuntu-18.04'
 trigger: none
-jobs:
-- deployment: Provision
-  environment: dev
-  strategy:
-    runOnce:
-      deploy:
-        steps:
-        # Install Terraform
-        - task: TerraformInstaller@0
-          inputs:
-            terraformVersion: '0.12.24'
-        # Run 'terraform init'
-        - task: TerraformTaskV1@0
-          inputs:
-            provider: 'azurerm'
-            command: 'init'
-            workingDirectory: '.'
-            backendServiceArm: 'd88e0c85-dev-subscription'
-            backendAzureRmResourceGroupName: 'terraform-rg'
-            backendAzureRmStorageAccountName: 'terraform03'
-            backendAzureRmContainerName: 'tfstate'
-            backendAzureRmKey: 'azdevops-terraform-plugin-tinker.tfstate'
-        - script: ls -Rl .
-        # Run 'terraform plan'
-        - task: TerraformTaskV1@0
-          inputs:
-            provider: 'azurerm'
-            command: 'plan'
-            workingDirectory: '.'
-            backendServiceArm: 'd88e0c85-dev-subscription'
-            backendAzureRmResourceGroupName: 'terraform-rg'
-            backendAzureRmStorageAccountName: 'terraform03'
-            backendAzureRmContainerName: 'tfstate'
-            backendAzureRmKey: 'azdevops-terraform-plugin-tinker.tfstate'
+
+steps:
+# Install Terraform
+- task: TerraformInstaller@0
+  inputs:
+    terraformVersion: '0.12.24'
+# Run 'terraform init'
+- task: TerraformTaskV1@0
+  inputs:
+    provider: 'azurerm'
+    command: 'init'
+    workingDirectory: '.'
+    backendServiceArm: 'd88e0c85-dev-subscription'
+    backendAzureRmResourceGroupName: 'terraform-rg'
+    backendAzureRmStorageAccountName: 'terraform03'
+    backendAzureRmContainerName: 'tfstate'
+    backendAzureRmKey: 'azdevops-terraform-plugin-tinker.tfstate'
+- script: ls -Rl .
+# Run 'terraform plan'
+- task: TerraformTaskV1@0
+  inputs:
+    provider: 'azurerm'
+    command: 'plan'
+    workingDirectory: '.'
+    backendServiceArm: 'd88e0c85-dev-subscription'
+    backendAzureRmResourceGroupName: 'terraform-rg'
+    backendAzureRmStorageAccountName: 'terraform03'
+    backendAzureRmContainerName: 'tfstate'
+    backendAzureRmKey: 'azdevops-terraform-plugin-tinker.tfstate'
