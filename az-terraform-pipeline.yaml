@@ -2,10 +2,9 @@
 pool:
   vmImage: 'Ubuntu-18.04'
 trigger: none
-variables:
-- group: 'canvasdata dev'
 jobs:
 - deployment: Provision
+  environment: dev
   strategy:
     runOnce:
       deploy:
