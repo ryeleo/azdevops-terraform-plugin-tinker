@@ -19,7 +19,6 @@ steps:
     backendAzureRmStorageAccountName: 'terraform03'
     backendAzureRmContainerName: 'tfstate'
     backendAzureRmKey: 'azdevops-terraform-plugin-tinker.tfstate'
-- script: ls -Rl .
 # Run 'terraform plan'
 - task: TerraformTaskV1@0
   inputs:
