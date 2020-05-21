@@ -1,33 +1,32 @@
 # Simple example pipeline that simply aims to run terraform plan!
 pool:
   vmImage: 'Ubuntu-18.04'
+  demands: te
 trigger: none
 
 steps:
-# # Install Terraform
-# - task: TerraformInstaller@0
-#   inputs:
-#     terraformVersion: '0.12.24'
-
-# # Run 'terraform init'
-# - task: TerraformTaskV1@0
-#   inputs:
-#     provider: 'azurerm'
-#     command: 'init'
-#     workingDirectory: '.'
-#     backendServiceArm: 'd88e0c85-dev-subscription'
-#     backendAzureRmResourceGroupName: 'terraform-rg'
-#     backendAzureRmStorageAccountName: 'terraform03'
-#     backendAzureRmContainerName: 'tfstate'
-#     backendAzureRmKey: 'azdevops-terraform-plugin-tinker.tfstate'
+# Install Terraform
+- task: TerraformInstaller@0
+  inputs:
+    terraformVersion: '0.12.24'
+# Run 'terraform init'
+- task: TerraformTaskV1@0
+  inputs:
+    provider: 'azurerm'
+    command: 'init'
+    workingDirectory: '.'
+    backendServiceArm: 'd88e0c85-dev-subscription'
+    backendAzureRmResourceGroupName: 'terraform-rg'
+    backendAzureRmStorageAccountName: 'terraform03'
+    backendAzureRmContainerName: 'tfstate'
+    backendAzureRmKey: 'azdevops-terraform-plugin-tinker.tfstate'
 # Run 'terraform plan'
 - task: AzureCLI@2
   inputs:
     azureSubscription: 'd88e0c85-dev-subscription'
     scriptType: 'bash'
     scriptLocation: 'inlineScript'
-    inlineScript: 'terraform --version'
-
+    inlineScript: 'terraform plan'
 
 # This terraform task doesn't work due to use of AzureRM backend, per: https://github.com/microsoft/azure-pipelines-extensions/issues/820
 # - task: TerraformTaskV1@0
