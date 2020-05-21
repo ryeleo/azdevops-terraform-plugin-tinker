@@ -1,7 +1,6 @@
 # Simple example pipeline that simply aims to run terraform plan!
 pool:
   vmImage: 'Ubuntu-18.04'
-  demands: te
 trigger: none
 
 steps:
