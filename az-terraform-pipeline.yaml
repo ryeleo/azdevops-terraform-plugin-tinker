@@ -4,22 +4,22 @@ pool:
 trigger: none
 
 steps:
-# Install Terraform
-- task: TerraformInstaller@0
-  inputs:
-    terraformVersion: '0.12.24'
+# # Install Terraform
+# - task: TerraformInstaller@0
+#   inputs:
+#     terraformVersion: '0.12.24'
 
-# Run 'terraform init'
-- task: TerraformTaskV1@0
-  inputs:
-    provider: 'azurerm'
-    command: 'init'
-    workingDirectory: '.'
-    backendServiceArm: 'd88e0c85-dev-subscription'
-    backendAzureRmResourceGroupName: 'terraform-rg'
-    backendAzureRmStorageAccountName: 'terraform03'
-    backendAzureRmContainerName: 'tfstate'
-    backendAzureRmKey: 'azdevops-terraform-plugin-tinker.tfstate'
+# # Run 'terraform init'
+# - task: TerraformTaskV1@0
+#   inputs:
+#     provider: 'azurerm'
+#     command: 'init'
+#     workingDirectory: '.'
+#     backendServiceArm: 'd88e0c85-dev-subscription'
+#     backendAzureRmResourceGroupName: 'terraform-rg'
+#     backendAzureRmStorageAccountName: 'terraform03'
+#     backendAzureRmContainerName: 'tfstate'
+#     backendAzureRmKey: 'azdevops-terraform-plugin-tinker.tfstate'
 # Run 'terraform plan'
 - task: AzureCLI@2
   inputs:
